@@ -1,0 +1,50 @@
+<template>
+    <div style = "background-color: rgb(255, 255, 255)">
+    <lightning-record-edit-form
+        object-api-name="Customer_Report__c"
+        record-id={recordId}
+        onsuccess={handleSuccess}>
+
+
+        <lightning-input-field field-name="Account__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="Code__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="Customer_Report__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="Name">
+        </lightning-input-field>
+        <lightning-input-field field-name="Data_Source__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="Frequency__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="FTP__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="ICO__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="Note__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="Parcel__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="ReportTemplateID__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="Schedule__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="Template__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="Title__c">
+        </lightning-input-field>
+
+
+        <div class="slds-var-m-top_medium">
+            <lightning-button
+                variant="brand"
+                type="submit"
+                label="Save">
+            </lightning-button>
+        </div>
+    </lightning-record-edit-form>  
+
+</div>
+
+</template>
