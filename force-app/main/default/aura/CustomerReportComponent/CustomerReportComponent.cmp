@@ -1,0 +1,14 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:actionOverride" access="global" >
+
+    <aura:attribute 
+        name="fields" type="String[]" 
+        default="['Account__c','Code__c','Customer_Report__c','Name','Data_Source__c','Frequency__c','FTP__c','ICO__c','Note__c','Parcel__c','ReportTemplateID__c','Schedule__c','Template__c','Title__c']" />
+    <aura:attribute name="recordId" type="String"/>
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    <div style = "background-color: rgb(255, 255, 255);">
+        <lightning:recordForm
+                objectApiName="Customer_Report__c"
+                fields="{!v.fields}"
+                onsuccess="{!c.handleSuccess}" />
+    </div>
+</aura:component>
