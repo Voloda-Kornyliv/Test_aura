@@ -1,6 +1,6 @@
 public class CustomReportTriggerHandler extends TriggerHandler {
     public CustomReportTriggerHandler() {
-        this.setMaxLoopCount(15);
+        this.setMaxLoopCount(5);
     }
 
     public override void beforeInsert(){
@@ -17,17 +17,19 @@ public class CustomReportTriggerHandler extends TriggerHandler {
         UpdateOrInsert_after();
     } 
     public void UpdateOrInsert_after(){
+        if (TriggerHandler.isBypassed('TriggerHandler')){return;}
         List<Customer_Report__c> CustRep = [SELECT Id, Account__r.Name, createdby.CompanyName FROM Customer_Report__c WHERE Id IN :Trigger.newMap.keySet()];
         for (Customer_Report__c cr : CustRep) {
             cr.Note__c = cr.Account__r.Name + cr.createdby.CompanyName;
         }
-
+        TriggerHandler.bypass('TriggerHandler');
         update CustRep;
+        TriggerHandler.clearAllBypasses();
 
     }
 
     public void UpdateOrInsert(){
-
+        if (TriggerHandler.isBypassed('TriggerHandler')){return;}
         List<Id> listIs = new List<Id>();
 
         for(Customer_Report__c CustRep : (List<Customer_Report__c>) Trigger.new) {
