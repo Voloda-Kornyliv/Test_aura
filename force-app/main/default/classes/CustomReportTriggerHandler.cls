@@ -3,10 +3,10 @@ public class CustomReportTriggerHandler extends TriggerHandler {
         this.setMaxLoopCount(5);
     }
     public override void beforeInsert(){
-        ChangeAccountSiteIfFrequencyCountainD(); 
+        ChangeAccountSiteIfFrequencyContainD(); 
     }
     public override void beforeUpdate(){
-        ChangeAccountSiteIfFrequencyCountainD();
+        ChangeAccountSiteIfFrequencyContainD();
     } 
     public override void afterInsert(){
         ChangeNoteToAccountNameAndOwnerCompanyName();
@@ -14,6 +14,7 @@ public class CustomReportTriggerHandler extends TriggerHandler {
     public override void afterUpdate(){
         ChangeNoteToAccountNameAndOwnerCompanyName();
     } 
+    //crate note from Acсount Name + Creator Company Name
     public void ChangeNoteToAccountNameAndOwnerCompanyName(){
         if (TriggerHandler.isBypassed('TriggerHandler')){
             return;
@@ -26,7 +27,8 @@ public class CustomReportTriggerHandler extends TriggerHandler {
         update CustRep;
         TriggerHandler.clearAllBypasses();
     }
-    public void ChangeAccountSiteIfFrequencyCountainD(){
+    //parent Account site set to https://www.ContainD.com/ if Customer Report Frequency contains D
+    public void ChangeAccountSiteIfFrequencyContainD(){
         if (TriggerHandler.isBypassed('TriggerHandler')){
             return;
         }
