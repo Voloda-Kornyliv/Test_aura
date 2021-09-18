@@ -16,9 +16,7 @@ public class CustomReportTriggerHandler extends TriggerHandler {
     } 
     //crate note from Acсount Name + Creator Company Name
     public void ChangeNoteToAccountNameAndOwnerCompanyName(){
-        if (TriggerHandler.isBypassed('TriggerHandler')){
-            return;
-        }
+        if (TriggerHandler.isBypassed('TriggerHandler')){return;}
         List<Customer_Report__c> CustRep = [SELECT Id, Account__r.Name, createdby.CompanyName FROM Customer_Report__c WHERE Id IN :Trigger.newMap.keySet()];
         for (Customer_Report__c cr : CustRep) {
             cr.Note__c = cr.Account__r.Name + cr.createdby.CompanyName;
@@ -29,9 +27,7 @@ public class CustomReportTriggerHandler extends TriggerHandler {
     }
     //parent Account site set to https://www.ContainD.com/ if Customer Report Frequency contains D
     public void ChangeAccountSiteIfFrequencyContainD(){
-        if (TriggerHandler.isBypassed('TriggerHandler')){
-            return;
-        }
+        if (TriggerHandler.isBypassed('TriggerHandler')){return;}
         List<Id> listIs = new List<Id>();
         for(Customer_Report__c CustRep : (List<Customer_Report__c>) Trigger.new) {
             if(CustRep.Frequency__c != null ){
