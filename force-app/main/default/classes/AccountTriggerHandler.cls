@@ -33,7 +33,7 @@ public class AccountTriggerHandler extends TriggerHandler {
             mail.setSubject('Account was deleted');
             mail.setTargetObjectId(activeUser.Id);
             mail.setTemplateID(emailTemplate.Id);
-            mail.setWhatId(acc.Id); 
+            mail.setWhatId(acc.Id);     
             String plainText = emailTemplate.body;
             System.debug(plainText);
             plainText = plainText.replace('{!User.Username}', UserName);
