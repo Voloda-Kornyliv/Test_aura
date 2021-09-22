@@ -16,9 +16,4 @@
         });
         urlEvent.fire();
     },
-    handleLoad: function (cmp, event, helper) {
-        var record = event.getParam("recordUi");
-        var fieldNames = Customer_Report__c.keys(record.fields);
-        component.set("v.fields", fieldNames);
-    }
 })
