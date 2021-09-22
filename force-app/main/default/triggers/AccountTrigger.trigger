@@ -1,3 +1,3 @@
-trigger AccountTrigger on Account (after delete) {
-    new AccountTriggerHandler.run();
+trigger AccountTrigger on Account (before delete) {
+    new AccountTriggerHandler().run();
 }
