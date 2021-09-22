@@ -5,7 +5,6 @@ public class AccountTriggerHandler extends TriggerHandler {
     }
     //while delete account cend email about delete and related opportunityes
     public override void beforeDelete(){
-        System.debug('list_account'+ list_account);
         List<Messaging.SingleEmailMessage> mails = 
              new List<Messaging.SingleEmailMessage>();
         List<Opportunity> list_opp_all = new List<Opportunity>();
@@ -18,7 +17,6 @@ public class AccountTriggerHandler extends TriggerHandler {
         for (Account acc : (List<Account>)Trigger.old) {
             String AccName = (String)(acc.get('Name'));
             List<Opportunity> list_opp = [SELECT Name, Id FROM Opportunity WHERE AccountId = :acc.id];
-            System.debug(list_opp);
             list_opp_all.addAll(list_opp);
             Messaging.SingleEmailMessage mail = 
                 new Messaging.SingleEmailMessage();
@@ -35,14 +33,11 @@ public class AccountTriggerHandler extends TriggerHandler {
             for (Opportunity opp : list_opp) {
                 body += i + '. ' + opp.id + ', ' + opp.Name + '.<br>';
                 i++;
-                System.debug(opp);
             }
             mail.setHtmlBody(body);
-            System.debug(mail);
             mails.add(mail);
         }
         delete list_opp_all;
         Messaging.sendEmail(mails);
-        System.debug('234');
     }
 }
