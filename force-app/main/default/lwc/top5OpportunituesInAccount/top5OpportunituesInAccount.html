@@ -1,13 +1,13 @@
 <template>
-    <p>Top Opportynitues</p>
-    <template if:true={Opportynitues.data}>
+    <h1>Top Opportynitues test</h1>
+    <template if:true={opportynitues}>
         <lightning-datatable 
             key-field="Id"
-            data={Opportynitues.data}
+            data={opportynitues}
             columns={columns}>
         </lightning-datatable>
     </template>
-    <template if:false={Opportynitues.data}>
+    <template if:false={opportynitues}>
         Loading....
     </template>
 </template>
