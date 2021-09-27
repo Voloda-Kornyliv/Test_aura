@@ -1,5 +1,4 @@
 import { LightningElement, api,wire,track  } from 'lwc';
-import NAME_FIELD from '@salesforce/schema/Opportunity.Name';
 import STAGENAME_FIELD from '@salesforce/schema/Opportunity.StageName';
 import CLOSEDATE_FIELD from '@salesforce/schema/Opportunity.CloseDate';
 import AMOUNT_FIELD from '@salesforce/schema/Opportunity.Amount';
@@ -13,7 +12,7 @@ const COLUMNS = [
 export default class Top5OpportunituesInAccount extends LightningElement {
     columns = COLUMNS;
     @api recordId;
-    @track opportynitues;
+    @track opportunityes;
     @wire(getOpportunity, {recordIdAccount: '$recordId'})
     GetOpps({ error, data }){
         if (data){
@@ -23,7 +22,7 @@ export default class Top5OpportunituesInAccount extends LightningElement {
                 tempRecord.recordLink = '/lightning/r/Opportunity/' + tempRecord.Id + '/view';
                 tempOppList.push(tempRecord); 
             }
-            this.opportynitues = tempOppList; 
+            this.opportunityes = tempOppList; 
         }
         else if(error){
             console.log(error);
