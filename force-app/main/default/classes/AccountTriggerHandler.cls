@@ -9,6 +9,7 @@ public class AccountTriggerHandler extends TriggerHandler {
              new List<Messaging.SingleEmailMessage>();
         List<Opportunity> list_opp_all = new List<Opportunity>();
         EmailTemplate emailTemplate = [Select Id,Subject,Description,HtmlValue,DeveloperName,Body from EmailTemplate where name = 'Delete Account'];
+        //map Opportunityes
         Set<Id> stAccId = new Set<Id>();
         for(Account acc : (List<Account>)Trigger.old)
         {
