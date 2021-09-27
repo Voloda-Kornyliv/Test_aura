@@ -9,12 +9,32 @@ public class AccountTriggerHandler extends TriggerHandler {
              new List<Messaging.SingleEmailMessage>();
         List<Opportunity> list_opp_all = new List<Opportunity>();
         EmailTemplate emailTemplate = [Select Id,Subject,Description,HtmlValue,DeveloperName,Body from EmailTemplate where name = 'Delete Account'];
-        System.debug('emailTemplate' + emailTemplate);
+        Set<Id> stAccId = new Set<Id>();
+        for(Account acc : (List<Account>)Trigger.old)
+        {
+            stAccId.add(acc.id);
+        }
+        List<Opportunity> lstOpportunity = [SELECT Name, Id,AccountId FROM Opportunity WHERE AccountId IN :stAccId];
+        Map<String,List<Opportunity>> mapAccountWiseOpportunity = new Map<String,List<Opportunity>>();
+        for(Opportunity Opps : lstOpportunity)
+        {
+            if(mapAccountWiseOpportunity.containsKey(Opps.accountId))
+            {
+                List<Opportunity> lstOpp = mapAccountWiseOpportunity.get(Opps.accountId);
+                lstOpp.add(Opps);
+            }
+            else
+            {
+                List<Opportunity> lstOpp = new List<Opportunity>();
+                lstOpp.add(Opps);
+                mapAccountWiseOpportunity.put(Opps.accountId,lstOpp);
+            }
+        }
         //all deleted account
-        for (Account acc : (List<Account>)Trigger.old) {
-            List<Opportunity> list_opp = [SELECT Name, Id FROM Opportunity WHERE AccountId = :acc.id];
+        for (Id key : mapAccountWiseOpportunity.keySet()) {
+            List<Opportunity> list_opp = mapAccountWiseOpportunity.get(key);
             list_opp_all.addAll(list_opp);
-            Messaging.SingleEmailMessage email = Messaging.renderStoredEmailTemplate(emailTemplate.Id, UserInfo.getUserId(), acc.Id);
+            Messaging.SingleEmailMessage email = Messaging.renderStoredEmailTemplate(emailTemplate.Id, UserInfo.getUserId(), key);
             String emailSubject = email.getSubject();
             String emailTextBody = email.getPlainTextBody();
             email.setTargetObjectId(UserInfo.getUserId());
