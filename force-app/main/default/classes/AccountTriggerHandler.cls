@@ -34,7 +34,6 @@ public class AccountTriggerHandler extends TriggerHandler {
             email.setPlainTextBody(emailTextBody);
             email.saveAsActivity = false;   
             String plainText = email.getPlainTextBody();
-            System.debug(plainText);
             String OppsText = '<br>';
             Integer i = 1;
             for (Opportunity opp : list_opp) {
