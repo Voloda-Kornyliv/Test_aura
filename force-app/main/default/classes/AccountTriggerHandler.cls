@@ -9,23 +9,14 @@ public class AccountTriggerHandler extends TriggerHandler {
              new List<Messaging.SingleEmailMessage>();
         List<Opportunity> list_opp_all = new List<Opportunity>();
         EmailTemplate emailTemplate = [Select Id,Subject,Description,HtmlValue,DeveloperName,Body from EmailTemplate where name = 'Delete Account'];
-        //map Opportunityes
-        Set<Id> stAccId = new Set<Id>();
-        for(Account acc : (List<Account>)Trigger.old)
-        {
-            stAccId.add(acc.id);
-        }
-        List<Opportunity> lstOpportunity = [SELECT Name, Id,AccountId FROM Opportunity WHERE AccountId IN :stAccId];
+        List<Opportunity> lstOpportunity = [SELECT Name, Id,AccountId FROM Opportunity WHERE AccountId IN :Trigger.old];
         Map<String,List<Opportunity>> mapAccountWiseOpportunity = new Map<String,List<Opportunity>>();
-        for(Opportunity Opps : lstOpportunity)
-        {
-            if(mapAccountWiseOpportunity.containsKey(Opps.accountId))
-            {
+        for(Opportunity Opps : lstOpportunity){
+            if(mapAccountWiseOpportunity.containsKey(Opps.accountId)){
                 List<Opportunity> lstOpp = mapAccountWiseOpportunity.get(Opps.accountId);
                 lstOpp.add(Opps);
             }
-            else
-            {
+            else{
                 List<Opportunity> lstOpp = new List<Opportunity>();
                 lstOpp.add(Opps);
                 mapAccountWiseOpportunity.put(Opps.accountId,lstOpp);
