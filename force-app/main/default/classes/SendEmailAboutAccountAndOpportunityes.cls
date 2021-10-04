@@ -4,7 +4,7 @@ public with sharing class SendEmailAboutAccountAndOpportunityes {
              new List<Messaging.SingleEmailMessage>();
         EmailTemplate emailTemplate = [Select Id,Subject,Description,HtmlValue,DeveloperName,Body from EmailTemplate where name = 'Delete Account'];
         List<Opportunity> lstOpportunity = [SELECT Name, Id,AccountId FROM Opportunity WHERE AccountId IN :deletedAccount];
-        Map<String,List<Opportunity>> mapAccountWiseOpportunity = new Map<String,List<Opportunity>>();
+        Map<String, List<Opportunity>> mapAccountWiseOpportunity = new Map<String,List<Opportunity>>();
         for(Opportunity Opps : lstOpportunity){
             if(!mapAccountWiseOpportunity.containsKey(Opps.accountId)){
                 mapAccountWiseOpportunity.put(Opps.accountId, new List<Opportunity>());
@@ -23,6 +23,7 @@ public with sharing class SendEmailAboutAccountAndOpportunityes {
             String plainText = email.getPlainTextBody();
             String OppsText = '<br>';
             Integer i = 1;
+            //void
             for (Opportunity opp : mapAccountWiseOpportunity.get(key)) {
                 OppsText += i + '. ' + opp.id + ', ' + opp.Name + '.<br>';
                 i++;
