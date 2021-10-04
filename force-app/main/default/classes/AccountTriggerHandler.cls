@@ -1,5 +1,5 @@
 public class AccountTriggerHandler extends TriggerHandler {
-    private List<Account> list_account = new List<Account>();
+    // private List<Account> list_account = new List<Account>();
     public AccountTriggerHandler() {
         this.setMaxLoopCount(1);
     }
