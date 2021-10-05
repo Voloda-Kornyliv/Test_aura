@@ -18,5 +18,4 @@ public class DeleteAllColdLeads implements Database.Batchable<sObject>, Database
         mail.setPlainTextBody(emailTemplate.Body.replace('COUNT', String.valueOf(totalAmtOfRecords)));    
         Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
     }
-
 }
