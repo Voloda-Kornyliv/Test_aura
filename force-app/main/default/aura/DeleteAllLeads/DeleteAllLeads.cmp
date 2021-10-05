@@ -1,0 +1,6 @@
+<aura:component controller="DeleteAllColdLeadsController" implements="force:lightningQuickAction">
+    <h1>Do you really wantto remove
+         all the Lead records from the database?</h1>
+    <lightning:button variant="brand" label="Ok" title="Ok action" onclick="{! c.okClick }" />
+    <lightning:button variant="destructive" label="Cancel" title="Cancel action" onclick="{! c.cancelClick }"/>
+</aura:component>	
