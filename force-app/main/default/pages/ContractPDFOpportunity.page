@@ -37,9 +37,9 @@
     </apex:pageBlock>
     <br></br>
     <br></br>
-    <h3 style="position: relative;top:15px;">Signature</h3>
+    <h3 style="position: relative;left: 50px;top:15px;">Signature</h3>
     <p style="font-size:150%;position: relative; left: 100px;">_____________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_____________________</p>
     <p style="font-size:150%;position: relative; left: 100px;">_____________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_____________________</p>
     <p style="font-size:150%;position: relative; left: 100px;">_____________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_____________________</p>
-    <p style="position: relative; left: 100px;">1234567890</p>
+    <p style="position: relative; left: 150px;">{!opp.Account.Name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GuitarShop Site Guest User</p>
 </apex:page>
