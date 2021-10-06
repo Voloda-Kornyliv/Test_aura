@@ -1,21 +1,26 @@
-<apex:page title="Contract" standardController="Opportunity" renderAs="pdf">
-    <apex:stylesheet value="{!$Resource.PDFDocumentStyle}" />
+<apex:page title="Contract" controller="OpportunityPDFcontroler" renderAs="pdf">
+    <apex:stylesheet value="{!$Resource.PDFDocumentStyle}"/>
     <!-- All Pages Header -->
     <c:PDFHeaderFooter type="header" position="left">
-        <div style="padding: 10px; background-color: #ccc">Your Logo Here</div>
+        <div style="position: absolute; top: 15px;">
+            <apex:image id="RedTagLogo" value="{!$Resource.RedTagLogo}" width="60" height="60" alt="RedTagLogo" />
+            <div style="position: absolute; left: 80px; top: 30px; font-size:200%;">RedTag</div>
+        </div>
     </c:PDFHeaderFooter>
-    <c:PDFHeaderFooter type="header" position="right">Second Right Header Text</c:PDFHeaderFooter>
-
-
+    <c:PDFHeaderFooter type="header" position="right">
+        {! DAY(TODAY()) }&nbsp;
+        <apex:outputText value="{0,date,MMMM}">
+            <apex:param value="{!TODAY()}" /> 
+        </apex:outputText>, {! YEAR(TODAY()) }
+    </c:PDFHeaderFooter>
     <!-- All Pages Footer -->
-    <c:PDFHeaderFooter type="footer" position="center" showPageNumbers="true"/>
-
+    <c:PDFHeaderFooter type="footer" position="center" showPageNumbers="true" />
     <!-- Content -->
-    <h1 style="padding-top: 3000px; background-color: #eee;">My Test Document</h1>
-    <p>Test text</p>
-    
-    <h1 style="padding-top: 3000px; background-color: #eee;">My Test Document</h1>
-    <p>Test text</p>
-    
-    
+    <apex:variable var="opp" value="{!opportunity}"/>
+    <h2>Contract between {custmer} and {seller company}</h2>     
+    <p>Greetings, {!opp.Amount}.</p>
+    <!-- <h1 style="padding-top: 3000px; background-color: #eee;">My Test Document</h1>
+    <p>Test text</p> -->
+
+
 </apex:page>
