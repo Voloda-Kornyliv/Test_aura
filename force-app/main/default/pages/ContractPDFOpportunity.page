@@ -1,6 +1,21 @@
-<apex:page title="Contract" standardController="Opportunity">
-<!-- Begin Default Content REMOVE THIS -->
-    <h1>Congratulations</h1>
-    This is your new Page
-<!-- End Default Content REMOVE THIS -->
+<apex:page title="Contract" standardController="Opportunity" renderAs="pdf">
+    <apex:stylesheet value="{!$Resource.PDFDocumentStyle}" />
+    <!-- All Pages Header -->
+    <c:PDFHeaderFooter type="header" position="left">
+        <div style="padding: 10px; background-color: #ccc">Your Logo Here</div>
+    </c:PDFHeaderFooter>
+    <c:PDFHeaderFooter type="header" position="right">Second Right Header Text</c:PDFHeaderFooter>
+
+
+    <!-- All Pages Footer -->
+    <c:PDFHeaderFooter type="footer" position="center" showPageNumbers="true"/>
+
+    <!-- Content -->
+    <h1 style="padding-top: 3000px; background-color: #eee;">My Test Document</h1>
+    <p>Test text</p>
+    
+    <h1 style="padding-top: 3000px; background-color: #eee;">My Test Document</h1>
+    <p>Test text</p>
+    
+    
 </apex:page>
