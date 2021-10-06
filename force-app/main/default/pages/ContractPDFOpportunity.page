@@ -18,6 +18,7 @@
     <!-- Content -->
     <apex:variable var="opp" value="{!opportunity}" />
     <apex:variable var="randText" value="{!randomText}" />
+    <!-- <apex:variable var="productList" value="{!oppportunityLineItem}"/> -->
     <h2>Contract between {!opp.Account.Name} and {!opp.MainCompetitors__c}</h2>
     <h1>General terms and conditions:</h1>
     <apex:outputLabel value="{!SUBSTITUTE(JSENCODE(randText), '\\n', '<br/>')}" escape="false" />
@@ -26,10 +27,19 @@
     <br></br>
     <br></br>
     <br></br>
-    <h2>Subject of contract</h2>
-    <!-- <apex:pageBlockTable value="{!account.Contacts}" var="contact">
-        <apex:column value="{!contact.Name}" />
-        <apex:column value="{!contact.MailingCity}" />
-        <apex:column value="{!contact.Phone}" />
-    </apex:pageBlockTable> -->
+    <apex:pageBlock title="Subject of contract">
+        <apex:pageBlockTable style="border:0.8px solid black;" value="{!oppportunityLineItem}" var="products">
+            <apex:column style="width:50%;border:0.8px solid black;"  value="{!products.Name}" />
+            <apex:column style="border:0.8px solid black;" value="{!products.Quantity}" />
+            <apex:column style="border:0.8px solid black;" value="{!products.UnitPrice}" />
+            <apex:column style="border:0.8px solid black;" value="{!products.TotalPrice}" />
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    <br></br>
+    <br></br>
+    <h3 style="position: relative;top:15px;">Signature</h3>
+    <p style="font-size:150%;position: relative; left: 100px;">_____________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_____________________</p>
+    <p style="font-size:150%;position: relative; left: 100px;">_____________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_____________________</p>
+    <p style="font-size:150%;position: relative; left: 100px;">_____________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_____________________</p>
+    <p style="position: relative; left: 100px;">1234567890</p>
 </apex:page>
