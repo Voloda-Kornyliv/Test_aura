@@ -1,5 +1,5 @@
 <apex:page title="Contract" controller="OpportunityPDFcontroler" renderAs="pdf">
-    <apex:stylesheet value="{!$Resource.PDFDocumentStyle}"/>
+    <apex:stylesheet value="{!$Resource.PDFDocumentStyle}" />
     <!-- All Pages Header -->
     <c:PDFHeaderFooter type="header" position="left">
         <div style="position: absolute; top: 15px;">
@@ -10,17 +10,26 @@
     <c:PDFHeaderFooter type="header" position="right">
         {! DAY(TODAY()) }&nbsp;
         <apex:outputText value="{0,date,MMMM}">
-            <apex:param value="{!TODAY()}" /> 
+            <apex:param value="{!TODAY()}" />
         </apex:outputText>, {! YEAR(TODAY()) }
     </c:PDFHeaderFooter>
     <!-- All Pages Footer -->
     <c:PDFHeaderFooter type="footer" position="center" showPageNumbers="true" />
     <!-- Content -->
-    <apex:variable var="opp" value="{!opportunity}"/>
-    <h2>Contract between {custmer} and {seller company}</h2>     
-    <p>Greetings, {!opp.Amount}.</p>
-    <!-- <h1 style="padding-top: 3000px; background-color: #eee;">My Test Document</h1>
-    <p>Test text</p> -->
-
-
+    <apex:variable var="opp" value="{!opportunity}" />
+    <apex:variable var="randText" value="{!randomText}" />
+    <h2>Contract between {!opp.Account.Name} and {!opp.MainCompetitors__c}</h2>
+    <h1>General terms and conditions:</h1>
+    <apex:outputLabel value="{!SUBSTITUTE(JSENCODE(randText), '\\n', '<br/>')}" escape="false" />
+    <!-- Second page -->
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <h2>Subject of contract</h2>
+    <!-- <apex:pageBlockTable value="{!account.Contacts}" var="contact">
+        <apex:column value="{!contact.Name}" />
+        <apex:column value="{!contact.MailingCity}" />
+        <apex:column value="{!contact.Phone}" />
+    </apex:pageBlockTable> -->
 </apex:page>
