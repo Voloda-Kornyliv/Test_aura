@@ -6,7 +6,8 @@ public with sharing class OpportunityPDFcontroler {
         if (opportunity == null){                      
             opportunity = [SELECT Account.Name, MainCompetitors__c 
             FROM Opportunity WHERE 
-            id = :ApexPages.currentPage().getParameters().get('id')];
+            id = :ApexPages.currentPage().getParameters().get('id')
+            LIMIT 1];
         }
         return opportunity;
     }
