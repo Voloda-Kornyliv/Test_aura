@@ -1,6 +1,7 @@
 public with sharing class OpportunityPDFcontroler {
     Opportunity opportunity;
     String randomText = '';
+    List<OpportunityLineItem> oppportunityLineItem;
     public Opportunity getOpportunity() {
         if (opportunity == null){                      
             opportunity = [SELECT Account.Name, MainCompetitors__c 
@@ -21,5 +22,14 @@ public with sharing class OpportunityPDFcontroler {
             }
         }
         return randomText;
+    }
+    public List<OpportunityLineItem> getOppportunityLineItem(){
+        if (oppportunityLineItem == null){  
+            oppportunityLineItem = [SELECT 
+                Name, Quantity, UnitPrice, TotalPrice 
+                FROM OpportunityLineItem
+                WHERE OpportunityId = :ApexPages.currentPage().getParameters().get('id')];
+        }
+        return oppportunityLineItem;
     }
 }
