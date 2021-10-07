@@ -1,0 +1,14 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <template if:true={dataWeather}>
+            <lightning-datatable
+                key-field="id"
+                data={dataWeather}
+                columns={columns}>
+            </lightning-datatable>
+        </template>
+        <template if:false={dataWeather}>
+            Not found Records
+        </template>
+    </div>
+</template>
