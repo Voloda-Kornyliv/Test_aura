@@ -6,4 +6,10 @@ public with sharing class WeatherApp {
         FROM Weather__c
         ORDER BY date__c DESC];
     }
+    @AuraEnabled(cacheable=true)
+    public static Weather_Setting__c getWeatherSetting() {
+        return [SELECT Name, id, city_name__c, language__c
+        FROM Weather_Setting__c
+        LIMIT 1];
+    }
 }
