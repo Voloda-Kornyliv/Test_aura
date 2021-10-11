@@ -12,7 +12,15 @@ public with sharing class WeatherRecords{
             '&lang=' + setting.language__c
             +'&appid=' + WeatherApp.Key__c);
         request.setMethod('GET');
-        HttpResponse response = http.send(request);
+        HttpResponse response;
+        if(Test.isRunningTest()){
+            response = new HttpResponse();
+            response.setBody('{"coord":{"lon":24.0232,"lat":49.8383},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01d"}],"base":"stations","main":{"temp":283.39,"feels_like":281.7,"temp_min":283.18,"temp_max":283.44,"pressure":1020,"humidity":47},"visibility":10000,"wind":{"speed":4,"deg":130},"clouds":{"all":0},"dt":1633945739,"sys":{"type":1,"id":8909,"country":"UA","sunrise":1633927142,"sunset":1633966915},"timezone":10800,"id":702550,"name":"Lviv","cod":200}');
+            response.setStatusCode(200);
+        }else {
+            response = http.send(request);
+        }
+
         if(response.getStatusCode() == 200) {    
             insert parseJSON(response, setting.city_name__c);
         }
