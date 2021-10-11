@@ -27,8 +27,7 @@ public with sharing class WeatherRecords {
             Double parse_humidity = Double.valueOf(main.get('humidity'));
             Map<String, Object> wind = (Map<String, Object>)results.get('wind');
             Double parse_wind_speed =  Double.valueOf(wind.get('speed'));
-            Date dat = Date.valueOf(System.now());
-            
+            Date dat = Date.valueOf(System.now());         
             Weather__c weatherToInsert = new Weather__c(
                 Name = setting.city_name__c + String.valueOf(dat),
                 city_name__c = setting.city_name__c,
