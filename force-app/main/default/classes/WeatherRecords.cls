@@ -43,7 +43,6 @@ public with sharing class WeatherRecords {
                 date__c = dat
             );
             insert weatherToInsert;
-            System.debug(weatherToInsert);
         }
     }
 }
