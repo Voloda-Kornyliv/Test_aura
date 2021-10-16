@@ -1,14 +1,54 @@
 <template>
     <div class="slds-box slds-theme_default">
         <div class="slds-grid slds-gutters">
-            <div class="slds-col">
+            <div class="slds-col slds-size_1-of-2">
                 <div class="slds-box slds-theme_shade">
-                    <span>List</span>
+                    <h1>List view</h1>
+                    <template if:true={listCase}>
+                        <lightning-datatable
+                            key-field="id"
+                            data={listCase}
+                            columns={columns}
+                            onrowaction={changeRecordId}>
+                        </lightning-datatable>
+                    </template>
+                    <template if:false={listCase}>
+                        Wait...
+                    </template>
                 </div> 
             </div>
-            <div class="slds-col">
+            <div class="slds-col slds-size_1-of-2">
                 <div class="slds-box slds-theme_shade">
-                    <span>List</span>
+                    <h1>Record details</h1>
+                    <lightning-record-view-form
+                        object-api-name="Case"
+                        record-id={recordId}>
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-output-field field-name="OwnerId"></lightning-output-field>
+                                <lightning-output-field field-name="CaseNumber"></lightning-output-field>
+                                <lightning-output-field field-name="ContactId"></lightning-output-field>
+                                <lightning-output-field field-name="AccountId"></lightning-output-field>
+                                <lightning-output-field field-name="Type"></lightning-output-field>
+                                <lightning-output-field field-name="Reason"></lightning-output-field>
+                                <lightning-output-field field-name="SuppliedEmail"></lightning-output-field>
+                                <lightning-output-field field-name="SuppliedName"></lightning-output-field>
+                                <lightning-output-field field-name="CreatedDate"></lightning-output-field>
+                                <lightning-output-field field-name="ProductId"></lightning-output-field>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-output-field field-name="Status"></lightning-output-field>
+                                <lightning-output-field field-name="Priority"></lightning-output-field>
+                                <lightning-output-field field-name="ContactPhone"></lightning-output-field>
+                                <lightning-output-field field-name="ContactEmail"></lightning-output-field>
+                                <lightning-output-field field-name="Origin"></lightning-output-field>
+                                <lightning-output-field field-name="SuppliedCompany"></lightning-output-field>
+                                <lightning-output-field field-name="SuppliedPhone"></lightning-output-field>
+                                <lightning-output-field field-name="ClosedDate"></lightning-output-field>
+                                <lightning-output-field field-name="EngineeringReqNumber__c"></lightning-output-field>
+                            </div>
+                        </div>
+                    </lightning-record-view-form>
                 </div> 
             </div>
         </div>
