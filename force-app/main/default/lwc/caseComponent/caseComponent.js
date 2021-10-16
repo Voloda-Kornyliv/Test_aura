@@ -1,5 +1,7 @@
 import { LightningElement,track, wire } from 'lwc';
+import {updateRecord} from 'lightning/uiRecordApi';
 import GetCaseByDateCreate from '@salesforce/apex/CaseComponent.GetCaseByDateCreate';
+import UpdateStatusToWorking from '@salesforce/apex/CaseComponent.UpdateStatusToWorking';
 
 const COLUMNS = [
     { label: 'CaseNumber', fieldName: 'CaseNumber', type:'text' },
@@ -32,8 +34,25 @@ export default class CaseComponent extends LightningElement {
             console.log(error);
         }
     }
+    // reoladView(){
+    //     GetCaseByDateCreate().then(result =>{
+    //         this.data = result;
+    //     }).catch(error => {
+    //         console.log(error);
+    //     })
+    // }
     changeRecordId(event){
-        this.recordId = event.detail.row.Id;
+        let fields = {
+            Id: event.detail.row.Id,
+            Status: 'Working'
+        }
+        const recordInput = { fields };
+        updateRecord(recordInput).then(result => {
+            // reoladView();
+        }).catch(error =>{
+            console.log(error);
+        });
     }
+
 
 }
