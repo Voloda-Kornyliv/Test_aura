@@ -36,13 +36,6 @@ export default class CaseComponent extends LightningElement {
                 console.log(result.data);
             }
     }
-    // reoladView(){
-    //     GetCaseByDateCreate().then(result =>{
-    //         this.data = result;
-    //     }).catch(error => {
-    //         console.log(error);
-    //     })
-    // }
     changeRecordId(event){
         let fields = {
             Id: event.detail.row.Id,
