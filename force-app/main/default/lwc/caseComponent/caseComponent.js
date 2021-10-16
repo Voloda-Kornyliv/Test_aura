@@ -1,7 +1,7 @@
 import { LightningElement,track, wire } from 'lwc';
 import {updateRecord} from 'lightning/uiRecordApi';
 import GetCaseByDateCreate from '@salesforce/apex/CaseComponent.GetCaseByDateCreate';
-import UpdateStatusToWorking from '@salesforce/apex/CaseComponent.UpdateStatusToWorking';
+import { refreshApex } from '@salesforce/apex';
 
 const COLUMNS = [
     { label: 'CaseNumber', fieldName: 'CaseNumber', type:'text' },
@@ -21,18 +21,20 @@ const COLUMNS = [
     },
 ];
 export default class CaseComponent extends LightningElement {
+    wiredDataResult;
     @track listCase;
     columns = COLUMNS;
     @track recordId;
     @wire(GetCaseByDateCreate)
-    getCase({ error, data }){
-        if (data){
-            this.listCase = data; 
-            this.recordId = data[0].Id;
-        }
-        else if(error){
-            console.log(error);
-        }
+    getCase(result){
+            this.wiredDataResult = result;
+            if (result.data){
+                this.listCase = result.data; 
+                this.recordId = result.data[0].Id;
+            }
+            else if(result.error){
+                console.log(result.data);
+            }
     }
     // reoladView(){
     //     GetCaseByDateCreate().then(result =>{
@@ -47,8 +49,9 @@ export default class CaseComponent extends LightningElement {
             Status: 'Working'
         }
         const recordInput = { fields };
-        updateRecord(recordInput).then(result => {
-            // reoladView();
+        updateRecord(recordInput).then(result => {          
+            refreshApex(this.wiredDataResult);
+            this.recordId = event.detail.row.Id;
         }).catch(error =>{
             console.log(error);
         });
