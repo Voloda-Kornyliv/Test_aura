@@ -6,6 +6,7 @@ public with sharing class CaseComponent {
             Status,
             CreatedDate
         FROM Case
+        WHERE Show_User__c = TRUE
         ORDER BY CreatedDate DESC];
     }
 }
