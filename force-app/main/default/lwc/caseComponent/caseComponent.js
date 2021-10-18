@@ -27,16 +27,18 @@ export default class CaseComponent extends LightningElement {
     @track recordId;
     @wire(GetCaseByDateCreate)
     getCase(result){
-            this.wiredDataResult = result;
-            if (result.data){
-                this.listCase = result.data; 
-                this.recordId = result.data[0].Id;
-            }
-            else if(result.error){
-                console.log(result.data);
-            }
+        this.wiredDataResult = result;
+        if (result.data){
+            this.listCase = result.data; 
+            this.recordId = result.data[0].Id;
+        }
+        else if(result.error){
+            console.log(result.data);
+        }
     }
     changeRecordId(event){
+        // var audio = new Audio('audio_file.mp3');
+        // audio.play();
         let fields = {
             Id: event.detail.row.Id,
             Status: 'Working'
