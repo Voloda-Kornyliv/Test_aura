@@ -10,23 +10,34 @@
         <div class="slds-box slds-theme_shade">
             <!-- Fields names -->
             <div class="slds-grid slds-gutters">
-                <div class="slds-col slds-size_1-of-5">
+                <div class="slds-col slds-size_1-of-6">
                     S.NO
                 </div>
-                <div class="slds-col slds-size_1-of-5">
+                <div class="slds-col slds-size_1-of-6">
                     NAME
                 </div>
-                <div class="slds-col slds-size_1-of-5">
+                <div class="slds-col slds-size_1-of-6">
                     SITE
                 </div>
-                <div class="slds-col slds-size_1-of-5">
+                <div class="slds-col slds-size_1-of-6">
                     EMAIL
                 </div>
-                <div class="slds-col slds-size_1-of-5">
+                <div class="slds-col slds-size_1-of-6">
                     PHONE
                 </div>
             </div>
-            <c-input-account-detalias></c-input-account-detalias>
+            <!-- Input fields -->
+            <template for:each={arr} for:item = "num">
+                <c-input-account-detalias 
+                    numrow = {num} 
+                    key = {num}
+                    onadd = {handleadd}
+                    onremove = {handleremove}>
+                </c-input-account-detalias>
+            </template>
+            <div class="slds-align_absolute-center">
+                <button class="slds-button slds-button_success">Save All</button>
+            </div>
         </div>
     </div>
 </template>
