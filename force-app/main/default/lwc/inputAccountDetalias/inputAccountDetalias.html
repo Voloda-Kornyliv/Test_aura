@@ -1,22 +1,35 @@
 <template>
-    <lightning-record-edit-form 
-        object-api-name="Account">
-        <div class="slds-grid slds-gutters">
-            <div class="slds-col slds-size_1-of-5">
-                1<!-- 1 ned fix -->
-            </div>
-            <div class="slds-col slds-size_1-of-5">
-                <lightning-input-field field-name="Name" variant="label-hidden"></lightning-input-field>
-            </div>
-            <div class="slds-col slds-size_1-of-5">
-                <lightning-input-field field-name="Site" variant="label-hidden"></lightning-input-field>
-            </div>
-            <div class="slds-col slds-size_1-of-5">
-                <lightning-input-field field-name="Email__c" variant="label-hidden"></lightning-input-field>
-            </div>
-            <div class="slds-col slds-size_1-of-5">
-                <lightning-input-field field-name="Phone" variant="label-hidden"></lightning-input-field>
-            </div>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_5-of-6">
+            <lightning-record-edit-form 
+                object-api-name="Account"
+                onchange={handleChnage}>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-5">
+                        {numrow}
+                    </div>
+                    <div class="slds-col slds-size_1-of-5">
+                        <lightning-input-field field-name="Name" variant="label-hidden"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-5">
+                        <lightning-input-field field-name="Site" variant="label-hidden"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-5">
+                        <lightning-input-field field-name="Email__c" variant="label-hidden"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-5">
+                        <lightning-input-field field-name="Phone" variant="label-hidden"></lightning-input-field>
+                    </div>
+                </div>
+            </lightning-record-edit-form>
         </div>
-    </lightning-record-edit-form>
+        <div class="slds-col slds-size_1-of-6">
+            <template if:true={showPlus}>
+                <lightning-button-icon icon-name="utility:add" onclick={addClick}  alternative-text="Add" title="Add" class="slds-align_absolute-center"></lightning-button-icon>
+            </template>
+            <template if:false={showPlus}>
+                <lightning-button variant="destructive" label="Remove" title="Remove action" onclick={removeClick} class="slds-align_absolute-center"></lightning-button>
+            </template>
+        </div>
+    </div>
 </template>
